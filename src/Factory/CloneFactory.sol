@@ -6,7 +6,7 @@ Bytecode of MinimalProxy.sol
 3d602d80600a3d3981f3 [creation code]
 63d3d373d3d3d363d73 [delegate call]
 [logic contract address]
-5af43d82803e903d91602b57fd5bf3
+5af43d82803e903d91602b57fd5bf3 
 
                    20 bytes               |                 20 bytes              |           15 bytes          |
 0x3d602d80600a3d3981f3363d3d373d3d3d363d73bebebebebebebebebebebebebebebebebebebebe5af43d82803e903d91602b57fd5bf3
