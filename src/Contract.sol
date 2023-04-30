@@ -1,13 +1,17 @@
 // SPDX-License-Identifier: Unlicense
 pragma solidity >=0.8.0;
 
+import "openzeppelin/access/Ownable.sol";
+import "./CloneFactory.sol";
+import "./MinimalProxy.sol";
+
 contract ContractFactory is Ownable, CloneFactory {
     address public libraryAddress;
-    ClonableContract[] public proxies;
+    MinimalProxy[] public proxies;
 
-    event ContractCreated(ClonableContract proxy);
+    event ContractCreated(MinimalProxy proxy);
 
-    constructor(address libraryAddr) public {
+    constructor(address libraryAddr) {
         libraryAddress = libraryAddr;
     }
 
@@ -16,8 +20,8 @@ contract ContractFactory is Ownable, CloneFactory {
     }
 
     function createContract(uint256 initialData) external {
-        ClonableContract proxy = ClonableContract(createClone(libraryAddress));
-        proxy.initialize(initialData);
+        MinimalProxy proxy = MinimalProxy(createClone(libraryAddress)); // deploy a minimal proxy
+        // proxy.initialize(initialData); // pass in constructor variables here
 
         proxies.push(proxy);
         emit ContractCreated(proxy);
